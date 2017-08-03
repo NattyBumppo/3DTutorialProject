@@ -15,12 +15,9 @@ public class TutorialHelper : MonoBehaviour {
 
     private List<Material> initialMaterials = new List<Material>();
     public Material uvMaterial;
-    public Material vertexCurvingMaterial;
     public Material vertexAnimatingMaterial;
     public Material furMaterial;
-    public Material uShadingMaterial;
-    public Material vShadingMaterial;
-    public Material uvShadingMaterial;
+    public Material customUvMaterial;
 
     public List<MeshFilter> objectMeshFilters = new List<MeshFilter>();
     public List<MeshRenderer> objectMeshRenderers = new List<MeshRenderer>();
@@ -206,7 +203,7 @@ public class TutorialHelper : MonoBehaviour {
     {
         if (Input.GetKeyDown(KeyCode.U))
         {
-            ApplyUvMaterial();
+            ApplyUvTextureMaterial();
         }
 
         if (Input.GetKeyDown(KeyCode.I))
@@ -214,9 +211,9 @@ public class TutorialHelper : MonoBehaviour {
             ApplyInitialMaterials();
         }
 
-        if (Input.GetKeyDown(KeyCode.V))
+        if (Input.GetKeyDown(KeyCode.A))
         {
-            ApplyVertexTweakingMaterial();
+            ApplyVertexAnimatingMaterial();
         }
 
         if (Input.GetKeyDown(KeyCode.F))
@@ -224,10 +221,10 @@ public class TutorialHelper : MonoBehaviour {
             ApplyFurMaterial();
         }
 
-        //if (Input.GetKeyDown(KeyCode.G))
-        //{
-        //    GenerateTriangle();
-        //}
+        if (Input.GetKeyDown(KeyCode.V))
+        {
+            ApplyCustomUvMaterial();
+        }
 
         //if (Input.GetKeyDown(KeyCode.H))
         //{
@@ -244,7 +241,7 @@ public class TutorialHelper : MonoBehaviour {
         }
     }
 
-    private void ApplyUvMaterial()
+    private void ApplyUvTextureMaterial()
     {
         for (int i = 0; i < objectMeshRenderers.Count; i++)
         {
@@ -253,7 +250,16 @@ public class TutorialHelper : MonoBehaviour {
         }
     }
 
-    private void ApplyVertexTweakingMaterial()
+    private void ApplyCustomUvMaterial()
+    {
+        for (int i = 0; i < objectMeshRenderers.Count; i++)
+        {
+            MeshRenderer mr = objectMeshRenderers[i];
+            mr.sharedMaterial = customUvMaterial;
+        }
+    }
+
+    private void ApplyVertexAnimatingMaterial()
     {
         for (int i = 0; i < objectMeshRenderers.Count; i++)
         {

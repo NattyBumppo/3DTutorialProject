@@ -1,6 +1,4 @@
-﻿// Upgrade NOTE: replaced 'mul(UNITY_MATRIX_MVP,*)' with 'UnityObjectToClipPos(*)'
-
-Shader "Custom/SampleVertexShader"
+﻿Shader "Custom/UvShader"
 {
 	Properties
 	{
@@ -40,26 +38,13 @@ Shader "Custom/SampleVertexShader"
 			v2f vert (appdata v)
 			{
 				v2f o;
-				
-				
-				// Alter vertex along normal
-				
-				
-				
-				v.vertex = v.vertex + (sin(_Time)) * 0.2 * v.normal;
 				o.vertex = UnityObjectToClipPos(v.vertex);
-
 				o.uv = TRANSFORM_TEX(v.uv, _MainTex);
 				return o;
 			}
 			
 			fixed4 frag (v2f i) : SV_Target
 			{
-				return float4(1,1,1,1);
-
-				// sample the texture
-				//fixed4 col = tex2D(_MainTex, i.uv);
-
 				// Oscillates between 0 and 1
 				float x = sin(_Time * 20) * 0.5 + 0.5;
 
