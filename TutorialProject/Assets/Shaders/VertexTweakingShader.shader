@@ -46,7 +46,7 @@ Shader "Custom/SampleVertexShader"
 				
 				
 				
-				//v.vertex = v.vertex + (sin(_Time)) * 0.2 * v.normal;
+				v.vertex = v.vertex + (sin(_Time)) * 0.2 * v.normal;
 				o.vertex = UnityObjectToClipPos(v.vertex);
 
 				o.uv = TRANSFORM_TEX(v.uv, _MainTex);
@@ -55,23 +55,26 @@ Shader "Custom/SampleVertexShader"
 			
 			fixed4 frag (v2f i) : SV_Target
 			{
+				return float4(1,1,1,1);
+
 				// sample the texture
 				//fixed4 col = tex2D(_MainTex, i.uv);
 
+				// Oscillates between 0 and 1
 				float x = sin(_Time * 20) * 0.5 + 0.5;
 
-				// If U < 0.5
+				// If vertical texture coordinate < x
 				if (i.uv.y < x)
 				{
-					// Draw green pixel
+					// Draw green pixel (with x brightness)
 					return float4(0, x, 0, 1);
 				}
+				// If vertical texture coordinate > x
 				else
 				{
-					// Draw purple pixel
+					// Draw purple pixel (with 1-x brightness)
 					return float4(1-x, 0, 1-x, 1);
 				}
-				//return col;
 			}
 			ENDCG
 		}
