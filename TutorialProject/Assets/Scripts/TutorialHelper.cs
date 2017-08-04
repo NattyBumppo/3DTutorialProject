@@ -61,7 +61,7 @@ public class TutorialHelper : MonoBehaviour {
 
         Vector3[] vertices = new Vector3[3];
         Vector2[] uvs = new Vector2[3];
-        int[] triangles = new int[9];
+        int[] triangles = new int[3];
 
         vertices[0] = new Vector3(0.0f, -1.0f, 0.0f);
         vertices[1] = new Vector3(1.0f, -1.0f, 0.0f);
